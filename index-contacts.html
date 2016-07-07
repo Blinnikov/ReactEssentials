@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  </head>
+  <body>
+        <div id="content">
+
+        </div>
+
+        <script type="text/babel">
+          var CONTACTS = [
+            {
+              id: 1,
+              name: "Wayne Gretzky",
+              phone: "+19170031212",
+              image: "http://eliteprospects.com/layout/players/gretzky.jpg"
+            },
+            {
+              id: 2,
+              name: "Igor Blinnikov",
+              phone: "+79117009090",
+              image: "https://scontent.cdninstagram.com/hphotos-xpa1/t51.2885-15/s320x320/e35/11934680_1682679475282572_643671684_n.jpg"
+            },
+            {
+              id: 3,
+              name: "Thomas Muller",
+              phone: "+43101233444",
+              image: "https://upload.wikimedia.org/wikipedia/commons/4/4e/FIFA_WC-qualification_2014_-_Austria_vs._Germany_2012-09-11_-_Thomas_M%C3%BCller_01_edit.JPG"
+            },
+            {
+              id: 4,
+              name: "Toto Cutugno",
+              phone: "+397865010014",
+              image: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Toto_Cutugno.jpg"
+            }
+          ];
+
+          var Contact = React.createClass({
+            render: function functionName() {
+              return <li>{this.props.name}</li>
+            }
+          });
+
+          var ContactList = React.createClass({
+                render: function() {
+                  return (
+                    <div>
+                      <ul>
+                        {
+                          CONTACTS.map(function (contact) {
+                            return <Contact key={contact.id} name={contact.name} phone={contact.phone} image={contact.image} />;
+                          })
+                        }
+                      </ul>
+                    </div>
+                  );
+                }
+            });
+
+            ReactDOM.render(
+              <ContactList />,
+              document.getElementById('content')
+            );
+
+
+        </script>
+  </body>
+</html>
