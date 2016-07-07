@@ -6,6 +6,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
         <div id="content">
@@ -42,15 +43,23 @@
 
           var Contact = React.createClass({
             render: function functionName() {
-              return <li>{this.props.name}</li>
-            }
-          });
+              return (
+              <li className="contact">
+                <img className="contact-image" src={this.props.image} width="60px" height="60px" />
+                <div className="contact-info">
+                  <div className="contact-name">{this.props.name}</div>
+                  <div className="contact-phone">{this.props.phone}</div>
+                </div>
+              </li>
+            );
+          }
+        });
 
           var ContactList = React.createClass({
                 render: function() {
                   return (
-                    <div>
-                      <ul>
+                    <div className="contacts">
+                      <ul className="contact-list">
                         {
                           CONTACTS.map(function (contact) {
                             return <Contact key={contact.id} name={contact.name} phone={contact.phone} image={contact.image} />;
