@@ -12,16 +12,29 @@
 
         <script type="text/babel">
             var HelloWorld = React.createClass({
-                render: function() {
-                  return <h1>My name is {this.props.name} {this.props.surname}</h1>;
+              getInitialState: function(){
+                return {
+                  name: ""
+                };
+              },
+              onInputTextChange: function (event) {
+                var name = event.target.value;
+                this.setState({
+                  name: name
+                });
+              },
+              render: function() {
+                  return (
+                    <div>
+                      <h1>My name is {this.state.name}</h1>
+                      <input type="text" onChange={this.onInputTextChange} />
+                    </div>
+                  );
                 }
             });
 
             ReactDOM.render(
               <div>
-                <HelloWorld name="Igor" surname="Blinnikov" />
-                <HelloWorld name="Oleg" />
-                <HelloWorld />
                 <HelloWorld />
               </div>,
               document.getElementById('content')
