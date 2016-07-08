@@ -24,33 +24,45 @@
                 return {
                   firstOperand: "",
                   secondOperand: "",
-                  opeartion: "+",
+                  operation: "+",
                   result: ""
                 };
               },
               onFirstOperandChanged: function (event) {
+                var firstOperand = event.target.value;
+                var secondOperand = this.state.secondOperand;
+                var operation = this.state.operation;
                 this.setState({
-                  firstOperand: event.target.value
+                  firstOperand: firstOperand,
+                  result: this.getResult(firstOperand, secondOperand, operation)
                 });
               },
               onSecondOperandChanged: function (event) {
+                var firstOperand = this.state.firstOperand;
+                var secondOperand = event.target.value;
+                var operation = this.state.operation;
                 this.setState({
-                  secondOperand: event.target.value
+                  secondOperand: secondOperand,
+                  result: this.getResult(firstOperand, secondOperand, operation)
                 });
               },
               onOperationChanged: function (event) {
+                var firstOperand = this.state.firstOperand;
+                var secondOperand = this.state.secondOperand;
                 var operation = event.target.value;
                 this.setState({
-                  opeartion: opeartion,
-                  result: this.getResult(this.state.firstOperand, this.state.secondOperand, operation)
+                  operation: operation,
+                  result: this.getResult(firstOperand, secondOperand, operation)
                 });
               },
               getResult: function (firstOperand, secondOperand, operation) {
                 if (firstOperand == "") {
-                  throw new Error('Enter first operand!');
+                  return "";
+                  // throw new Error('Enter first operand!');
                 }
                 if (secondOperand == "") {
-                  throw new Error('Enter second operand!');
+                  return "";
+                  // throw new Error('Enter second operand!');
                 }
 
                 var operand1 = parseFloat(firstOperand);
@@ -63,7 +75,7 @@
                     return operand1 - operand2;
                   case "*":
                     return operand1 * operand2;
-                  case "":
+                  case "/":
                     return operand1 / operand2;
                   default:
                     throw new Error('Unsupported operation!');
