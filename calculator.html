@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calculator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div id="content"></div>
+        </div>
+      </div>
+    </div>
+
+
+        <script type="text/babel">
+            var Calculator = React.createClass({
+              getInitialState: function(){
+                return {
+                  firstOperand: "",
+                  secondOperand: "",
+                  opeartion: "+",
+                  result: ""
+                };
+              },
+              onFirstOperandChanged: function (event) {
+                this.setState({
+                  firstOperand: event.target.value
+                });
+              },
+              onSecondOperandChanged: function (event) {
+                this.setState({
+                  secondOperand: event.target.value
+                });
+              },
+              onOperationChanged: function (event) {
+                var operation = event.target.value;
+                this.setState({
+                  opeartion: opeartion,
+                  result: this.getResult(this.state.firstOperand, this.state.secondOperand, operation)
+                });
+              },
+              getResult: function (firstOperand, secondOperand, operation) {
+                if (firstOperand == "") {
+                  throw new Error('Enter first operand!');
+                }
+                if (secondOperand == "") {
+                  throw new Error('Enter second operand!');
+                }
+
+                var operand1 = parseFloat(firstOperand);
+                var operand2 = parseFloat(secondOperand);
+
+                switch (operation) {
+                  case "+":
+                    return operand1 + operand2;
+                  case "-":
+                    return operand1 - operand2;
+                  case "*":
+                    return operand1 * operand2;
+                  case "":
+                    return operand1 / operand2;
+                  default:
+                    throw new Error('Unsupported operation!');
+                }
+              },
+              onInputTextChange: function (event) {
+                var name = event.target.value;
+                this.setState({
+                  name: name
+                });
+              },
+              render: function() {
+                  return (
+                    <div className="form-inline">
+                      <input type="email" className="form-control" placeholder="First argument" onChange={this.onFirstOperandChanged} />&nbsp;
+                      <select className="form-control" onChange={this.onOperationChanged}>
+                        <option value="+">+</option>
+                        <option value="-">-</option>
+                        <option value="*">*</option>
+                        <option value="/">/</option>
+                      </select>&nbsp;
+                      <input type="text" className="form-control" placeholder="Second argument" onChange={this.onSecondOperandChanged} />
+                      <span> = {this.state.result}</span>
+                    </div>
+                  );
+                }
+            });
+
+            ReactDOM.render(
+              <div>
+                <Calculator />
+              </div>,
+              document.getElementById('content')
+            );
+
+        </script>
+  </body>
+</html>
