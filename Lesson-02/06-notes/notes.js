@@ -2,7 +2,10 @@ var Note = React.createClass({
   render: function() {
     var style = { backgroundColor: this.props.color };
     return (
-      <div className="note" style={style}> {this.props.children} </div>
+      <div className="note" style={style}>
+        <span className="delete-note" onClick={this.props.onDelete}> x </span>
+        {this.props.children}
+      </div>
     );
   }
 });
@@ -25,13 +28,20 @@ var NotesGrid = React.createClass({
     }
   },
   render: function() {
+    var onDelete = this.props.onNoteDelete;
     return (
       <div className="notes-grid" ref="grid">
         {
           this.props.notes.map(function(note) {
-            return <Note key={note.id} color={note.color} >
-              {note.text}
-            </Note>;
+            return (
+              <Note
+                key={note.id}
+                color={note.color}
+                onDelete={onDelete.bind(null, note)}
+              >
+                {note.text}
+              </Note>
+            );
           })
         }
       </div>
@@ -128,16 +138,24 @@ var App = React.createClass({
   onNoteAdd: function(newNote) {
     var newNotes = this.state.notes.slice();
     newNotes.unshift(newNote);
-    this.setState({
-      notes: newNotes
-    }, this._updateLocalStorage);
+    this.setState({ notes: newNotes });
+  },
+  onNoteDelete: function(note) {
+    var id = note.id;
+    var notes = this.state.notes.filter(function(note) {
+      return note.id !== id;
+    });
+    this.setState({ notes: notes });
+  },
+  componentDidUpdate: function() {
+    this._updateLocalStorage();
   },
   render: function() {
       return (
         <div className="notes-app">
           Notes App
           <NoteEditor onNoteAdd={this.onNoteAdd} />
-          <NotesGrid notes={this.state.notes} />
+          <NotesGrid notes={this.state.notes} onNoteDelete={this.onNoteDelete} />
         </div>
       );
     },
