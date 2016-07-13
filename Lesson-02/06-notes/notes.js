@@ -90,41 +90,7 @@ var NoteEditor = React.createClass({
 var App = React.createClass({
   getInitialState: function() {
     return {
-      notes: [
-        // {
-        //   id: 0,
-        //   text: 'Text 01',
-        //   color: '#FFD700'
-        // }, {
-        //   id: 1,
-        //   text: 'Text 02',
-        //   color: '#20B2AA'
-        // }, {
-        //   id: 2,
-        //   text: 'Text 03',
-        //   color: '#90EE90'
-        // }, {
-        //   id: 3,
-        //   text: 'Text 04',
-        //   color: '#87CEFA'
-        // }, {
-        //   id: 4,
-        //   text: 'Text 05',
-        //   color: '#FFB6C1'
-        // }, {
-        //   id: 5,
-        //   text: 'Text 06',
-        //   color: '#5F9EA0'
-        // }, {
-        //   id: 6,
-        //   text: 'Text 07',
-        //   color: '#FFA07A'
-        // }, {
-        //   id: 7,
-        //   text: 'Text 08',
-        //   color: '#00FA9A'
-        // }
-      ]
+      notes: []
     };
   },
   componentDidMount: function() {
