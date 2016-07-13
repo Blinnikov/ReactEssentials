@@ -81,7 +81,7 @@ var NoteEditor = React.createClass({
             value={this.state.text}
             onChange={this.onTextChange}
           />
-        <button className="add-button" onClick={this.addNote}>Add</button>
+          <button className="add-button" onClick={this.addNote}>Add</button>
         </div>
     );
   }

@@ -18,5 +18,9 @@
   "homepage": "https://github.com/Blinnikov/ReactEssentials#readme",
   "devDependencies": {
     "http-server": "^0.9.0"
+  },
+  "dependencies": {
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1"
   }
 }
