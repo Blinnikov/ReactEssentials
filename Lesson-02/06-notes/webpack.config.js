@@ -10,11 +10,9 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.jsx?$/,
-            loader: "babel",
-            exclude: [/node_modules/, /public/],
-            query: {
-                presets: ["react"]
-            }
+            // loader: "react-hot!babel?presets[]=react",
+            loaders: ['react-hot', 'babel?presets[]=react'],
+            exclude: [/node_modules/, /public/]
         }, {
             test: /\.css$/,
             loader: "style-loader!css-loader!autoprefixer-loader",
