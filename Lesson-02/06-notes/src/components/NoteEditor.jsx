@@ -1,5 +1,7 @@
 var React = require('react');
 
+require('./NoteEditor.css')
+
 var NoteEditor = React.createClass({
     getInitialState: function() {
         return {text: ''}
