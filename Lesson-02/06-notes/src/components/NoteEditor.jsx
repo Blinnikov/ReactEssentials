@@ -1,7 +1,7 @@
 var React = require('react');
 var ColorPicker = require('./ColorPicker.jsx');
 
-require('./NoteEditor.css')
+require('./NoteEditor.less')
 
 var NoteEditor = React.createClass({
     getInitialState: function() {
@@ -28,7 +28,7 @@ var NoteEditor = React.createClass({
                     <ColorPicker />
                   </div>
                   <div className="right-group">
-                    <button className="add-button" onClick={this.addNote}>Add</button>
+                    <button className="add-button" onClick={this.addNote} disabled={!this.state.text} >Add</button>
                   </div>
                 </div>
             </div>
