@@ -1,4 +1,5 @@
 var React = require('react');
+var ColorPicker = require('./ColorPicker.jsx');
 
 require('./NoteEditor.css')
 
@@ -22,7 +23,14 @@ var NoteEditor = React.createClass({
         return (
             <div className="note-editor">
                 <textarea placeholder="Enter yout text here.." rows={5} className="textarea" value={this.state.text} onChange={this.onTextChange}/>
-                <button className="add-button" onClick={this.addNote}>Add</button>
+                <div className="groups">
+                  <div className="left-group">
+                    <ColorPicker />
+                  </div>
+                  <div className="right-group">
+                    <button className="add-button" onClick={this.addNote}>Add</button>
+                  </div>
+                </div>
             </div>
         );
     }

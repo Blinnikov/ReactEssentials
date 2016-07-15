@@ -27,6 +27,16 @@
 .textarea:focus {
     outline: 0;
 }
+.groups {
+    display: flex;
+    flex-direction: row;
+}
+.left-group {
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0;
+}
 .add-button {
     -webkit-align-self: flex-end;
     -ms-flex-item-align: end;
