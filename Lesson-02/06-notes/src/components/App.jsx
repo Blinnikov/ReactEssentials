@@ -2,7 +2,7 @@ var React = require('react');
 var NoteEditor = require('./NoteEditor.jsx');
 var NotesGrid = require('./NotesGrid.jsx');
 
-require('./App.css');
+require('./App.less');
 
 var App = React.createClass({
     getInitialState: function() {
@@ -32,7 +32,13 @@ var App = React.createClass({
     render: function() {
         return (
             <div className="notes-app">
-                <NoteEditor onNoteAdd={this.onNoteAdd}/>
+                <div className="notes-actions">
+                  <div className="search">
+                    <span className="search-icon">{'\u1F50E'}</span>
+                    <input type="text" className="search-input" />
+                  </div>
+                  <NoteEditor onNoteAdd={this.onNoteAdd}/>
+                </div>
                 <NotesGrid notes={this.state.notes} onNoteDelete={this.onNoteDelete}/>
             </div>
         );
